@@ -18,82 +18,323 @@
     --accent-soft: rgba(200,169,107,0.22);
     --shadow: 0 18px 45px rgba(0,0,0,0.30);
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); font-family: "Segoe UI", Inter, Arial, sans-serif; }
-  body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 28%), radial-gradient(circle at top right, rgba(200,169,107,0.07), transparent 24%), linear-gradient(180deg, rgba(255,255,255,0.015), transparent 30%); pointer-events: none; z-index: 0; }
-  #frame-wrap { position: fixed; inset: 0; background: var(--bg); z-index: 1; }
-  #slide { position: fixed; inset: 0; width: 100%; height: 100%; border: none; background: var(--bg); z-index: 1; }
-  #preload-frame { position: fixed; width: 1px; height: 1px; left: -9999px; top: -9999px; opacity: 0; pointer-events: none; border: none; }
-  #top-line { position: fixed; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(200,169,107,0.55), transparent); z-index: 120; }
-  #hud { position: fixed; left: 22px; right: 22px; bottom: 18px; min-height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border: 1px solid var(--line); border-radius: 20px; background: linear-gradient(180deg, rgba(18,22,42,0.72), rgba(9,11,22,0.76)); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: var(--shadow); z-index: 110; opacity: 1; transition: opacity 1s ease, transform 1s ease; }
-  #hud.hidden { opacity: 0; transform: translateY(10px); pointer-events: none; }
-  #hud-left { display: flex; flex-direction: column; gap: 6px; }
-  #hud-label { color: var(--muted); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; }
-  #page-name { color: var(--text); font-size: 22px; font-weight: 600; letter-spacing: 0.01em; line-height: 1.1; }
-  #hud-right { display: flex; align-items: center; gap: 18px; }
-  #page-counter { color: rgba(255,255,255,0.72); font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; min-width: 72px; text-align: right; }
-  #dots { display: flex; gap: 9px; align-items: center; }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.18); transition: all 0.35s ease; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04); }
-  .dot.active { width: 24px; border-radius: 999px; background: linear-gradient(90deg, var(--accent), #e0c48e); box-shadow: 0 0 18px rgba(200,169,107,0.28); }
-  #progress-wrap { position: fixed; left: 22px; right: 22px; bottom: 8px; height: 3px; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,0.06); z-index: 111; }
-  #progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #8D6A37, var(--accent), #E8D2A0); box-shadow: 0 0 18px rgba(200,169,107,0.25); transition: width linear; }
-  #overlay { position: fixed; inset: 0; background: linear-gradient(180deg, rgba(21,24,47,0.60), rgba(21,24,47,0.92)); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.45s ease; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    font-family: "Segoe UI", Inter, Arial, sans-serif;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 28%),
+      radial-gradient(circle at top right, rgba(200,169,107,0.07), transparent 24%),
+      linear-gradient(180deg, rgba(255,255,255,0.015), transparent 30%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  #frame-wrap {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 1;
+  }
+
+  #slide {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: var(--bg);
+    z-index: 1;
+  }
+
+  #preload-frame {
+    position: fixed;
+    width: 1px;
+    height: 1px;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
+    pointer-events: none;
+    border: none;
+  }
+
+  #top-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,169,107,0.55), transparent);
+    z-index: 120;
+  }
+
+  #hud {
+    position: fixed;
+    left: 22px;
+    right: 22px;
+    bottom: 18px;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(18,22,42,0.72), rgba(9,11,22,0.76));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow);
+    z-index: 110;
+    opacity: 1;
+    transition: opacity 1s ease, transform 1s ease;
+  }
+
+  #hud.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+  }
+
+  #hud-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #hud-label {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  #page-name {
+    color: var(--text);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+  }
+
+  #hud-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  #page-counter {
+    color: rgba(255,255,255,0.72);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    min-width: 72px;
+    text-align: right;
+  }
+
+  #dots {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    transition: all 0.35s ease;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .dot.active {
+    width: 24px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), #e0c48e);
+    box-shadow: 0 0 18px rgba(200,169,107,0.28);
+  }
+
+  #progress-wrap {
+    position: fixed;
+    left: 22px;
+    right: 22px;
+    bottom: 8px;
+    height: 3px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.06);
+    z-index: 111;
+  }
+
+  #progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #8D6A37, var(--accent), #E8D2A0);
+    box-shadow: 0 0 18px rgba(200,169,107,0.25);
+    transition: width linear;
+  }
+
+  #overlay {
+    position: fixed;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(21,24,47,0.60), rgba(21,24,47,0.92));
+    z-index: 99;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+
   #overlay.fade-in { opacity: 1; }
   #overlay.fade-out { opacity: 0; }
-  #loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 14px; color: rgba(255,255,255,0.75); background: rgba(21,24,47,0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 105; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
-  #loading.show { opacity: 1; }
-  #loading-ring { width: 34px; height: 34px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.12); border-top-color: var(--accent); animation: spin 1s linear infinite; }
-  #loading-text { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,0.62); }
-  #auth-warning { position: fixed; top: 68px; left: 50%; transform: translateX(-50%); background: rgba(129,38,38,0.92); color: #fff; font-size: 12px; font-weight: 600; padding: 11px 18px; border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; z-index: 200; display: none; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: var(--shadow); }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  @media (max-width: 900px) { #page-name { font-size: 18px; } #hud { min-height: 64px; padding: 14px 16px; } #page-counter { display: none; } }
+
+  #loading {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 14px;
+    color: rgba(255,255,255,0.75);
+    background: rgba(21,24,47,0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 105;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  #loading.show {
+    opacity: 1;
+  }
+
+  #loading-ring {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.12);
+    border-top-color: var(--accent);
+    animation: spin 1s linear infinite;
+  }
+
+  #loading-text {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(255,255,255,0.62);
+  }
+
+  #auth-warning {
+    position: fixed;
+    top: 68px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(129, 38, 38, 0.92);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 11px 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 999px;
+    z-index: 200;
+    display: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: var(--shadow);
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 900px) {
+    #page-name { font-size: 18px; }
+    #hud { min-height: 64px; padding: 14px 16px; }
+    #page-counter { display: none; }
+  }
 </style>
 </head>
 <body>
+
 <div id="top-line"></div>
+
 <div id="frame-wrap">
   <iframe id="slide" src="about:blank" allowfullscreen></iframe>
 </div>
+
 <iframe id="preload-frame" src="about:blank" tabindex="-1" aria-hidden="true"></iframe>
+
 <div id="overlay"></div>
+
 <div id="loading">
   <div id="loading-ring"></div>
   <div id="loading-text">Carregando painel</div>
 </div>
+
 <div id="hud">
   <div id="hud-left">
     <div id="hud-label">Visualização Executiva</div>
     <div id="page-name">Carregando...</div>
   </div>
   <div id="hud-right">
-    <div id="page-counter">01 / 01</div>
+    <div id="page-counter">01 / 07</div>
     <div id="dots"></div>
   </div>
 </div>
+
 <div id="progress-wrap"><div id="progress-bar"></div></div>
+
 <div id="auth-warning">Sessão expirada — faça login no Power BI</div>
+
 <script>
   const CTID = "d58f1e74-56ed-4318-8e84-2c3440cf361a";
-  const REL_TESTE = "07acd758-cd4f-4de9-9248-a1225f5b582e";
+  const REL1 = "2dee392c-0ec2-474f-8921-df22058b942e";
+  const REL2 = "0e88a603-77cf-44fc-af62-b2a058771379";
 
   function embedUrl(reportId, pageName) {
     const base =
-      "https://app.powerbi.com/reportEmbed?reportId=" + reportId +
+      "https://app.powerbi.com/reportEmbed?reportId=" +
+      reportId +
       "&autoAuth=true" +
       "&ctid=" + CTID +
       "&navContentPaneEnabled=false" +
       "&filterPaneEnabled=false" +
-      "&chromeless=1" +
+      "&chrome=0" +
       "&background=transparent";
+
     return pageName ? base + "&pageName=" + pageName : base;
   }
 
   const PAGES = [
-    { nome: "JUR - Painel", url: embedUrl(REL_TESTE, "74553046e5107a1bda90") }
+    { nome: "Painel Gerencial", url: embedUrl(REL1) },
+    { nome: "Overview I – Estoque Processos", url: embedUrl(REL2, "719c33f014a00bac7bc5") },
+    { nome: "OVERVIEW I - PROCESSOS POR CAUSA RAIZ 1 - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "826e6e5790b940ce3600") },
+    { nome: "Em OVERVIEW I - CARTEIRA PROCESSOS GERAL  - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "3c9c0668ed744bdd8dc1") },
+    { nome: "OVERVIEW I - CARTEIRA PROCESSOS GERAL - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "657d24706d8dc3705088") },
+    { nome: "OVERVIEW II - RANKING TERCEIROS - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "5747498b30d29013e2d6") },
+    { nome: "OVERVIEW II - RANKING OBRAS - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "6a431636152ac9bdcd32") },
+    { nome: "OVERVIEW II - PROCESSOS POR FASE - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "9801abe3e8e7181e0010") },
+    { nome: "OVERVIEW II - GARANTIAS EM CURSO", url: embedUrl(REL2, "0bb82610e14833929de3") },
+    { nome: "OVERVIEW II - CARTEIRA PROCESSOS GERAL - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "b7ea0db39251000c7945") }
   ];
 
-  const TEMPO_EXIBICAO_MS = 45000;
-  const TEMPO_MAX_CARGA_MS = 60000;
+  const TEMPO_EXIBICAO_MS = 300000;
+  const TEMPO_MAX_CARGA_MS = 45000;
   const TEMPO_MINIMO_POS_CARGA_MS = 2500;
 
   const iframe = document.getElementById('slide');
@@ -107,7 +348,12 @@
   const authWarning = document.getElementById('auth-warning');
   const loading = document.getElementById('loading');
 
-  let current = 0, timer = null, hudTimer = null, loadTimeout = null, transitionLock = false;
+  let current = 0;
+  let timer = null;
+  let hudTimer = null;
+  let loadTimeout = null;
+  let transitionLock = false;
+
   const loadedUrls = new Set();
   let preloadedUrl = null;
 
@@ -117,57 +363,139 @@
     dotsEl.appendChild(d);
   });
 
-  function getDots() { return document.querySelectorAll('.dot'); }
-  function showHud() { hud.classList.remove('hidden'); clearTimeout(hudTimer); hudTimer = setTimeout(() => hud.classList.add('hidden'), 5000); }
-  function setLoading(show) { loading.classList.toggle('show', !!show); }
-  function resetProgress() { progressBar.style.transition = 'none'; progressBar.style.width = '0%'; }
-  function startProgress(ms) { requestAnimationFrame(() => requestAnimationFrame(() => { progressBar.style.transition = 'width ' + ms + 'ms linear'; progressBar.style.width = '100%'; })); }
+  function getDots() {
+    return document.querySelectorAll('.dot');
+  }
+
+  function showHud() {
+    hud.classList.remove('hidden');
+    clearTimeout(hudTimer);
+    hudTimer = setTimeout(() => hud.classList.add('hidden'), 5000);
+  }
+
+  function setLoading(show) {
+    loading.classList.toggle('show', !!show);
+  }
+
+  function resetProgress() {
+    progressBar.style.transition = 'none';
+    progressBar.style.width = '0%';
+  }
+
+  function startProgress(ms) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        progressBar.style.transition = 'width ' + ms + 'ms linear';
+        progressBar.style.width = '100%';
+      });
+    });
+  }
+
   function checkAuthWarning() {
     try {
       const url = iframe.contentWindow.location.href || '';
-      const isLogin = url.includes('login.microsoftonline') || url.includes('login.microsoft') || url.includes('login.live');
+      const isLogin =
+        url.includes('login.microsoftonline') ||
+        url.includes('login.microsoft') ||
+        url.includes('login.live');
       authWarning.style.display = isLogin ? 'block' : 'none';
-    } catch(e) { authWarning.style.display = 'none'; }
+    } catch (e) {
+      authWarning.style.display = 'none';
+    }
   }
-  function finishOverlay() { overlay.classList.remove('fade-in'); overlay.classList.add('fade-out'); setTimeout(() => overlay.classList.remove('fade-out'), 450); }
-  function scheduleNext() { clearTimeout(timer); resetProgress(); startProgress(TEMPO_EXIBICAO_MS); timer = setTimeout(() => goTo(current + 1), TEMPO_EXIBICAO_MS); }
+
+  function preloadNext(index) {
+    const nextPage = PAGES[index % PAGES.length];
+    if (!nextPage) return;
+    if (loadedUrls.has(nextPage.url)) return;
+    if (preloadedUrl === nextPage.url) return;
+
+    preloadedUrl = nextPage.url;
+    preloadFrame.src = nextPage.url;
+  }
+
+  function finishOverlay() {
+    overlay.classList.remove('fade-in');
+    overlay.classList.add('fade-out');
+    setTimeout(() => overlay.classList.remove('fade-out'), 450);
+  }
+
+  function scheduleNext() {
+    clearTimeout(timer);
+    resetProgress();
+    startProgress(TEMPO_EXIBICAO_MS);
+    timer = setTimeout(() => goTo(current + 1), TEMPO_EXIBICAO_MS);
+  }
+
   function updateUi(index) {
     const page = PAGES[index];
     pageNameEl.textContent = page.nome;
+
     const atual = String(index + 1).padStart(2, '0');
     const total = String(PAGES.length).padStart(2, '0');
-    pageCounterEl.textContent = atual + ' / ' + total;
+    pageCounterEl.textContent = `${atual} / ${total}`;
+
     getDots().forEach((d, i) => d.classList.toggle('active', i === index));
     showHud();
   }
+
   function onFrameLoaded(expectedUrl, index) {
     clearTimeout(loadTimeout);
     loadedUrls.add(expectedUrl);
     checkAuthWarning();
     setLoading(false);
-    setTimeout(() => { finishOverlay(); scheduleNext(); transitionLock = false; }, TEMPO_MINIMO_POS_CARGA_MS);
+
+    setTimeout(() => {
+      finishOverlay();
+      scheduleNext();
+      preloadNext(index + 1);
+      transitionLock = false;
+    }, TEMPO_MINIMO_POS_CARGA_MS);
   }
+
   function goTo(index) {
     if (transitionLock) return;
     transitionLock = true;
-    clearTimeout(timer); clearTimeout(loadTimeout);
+
+    clearTimeout(timer);
+    clearTimeout(loadTimeout);
+
     overlay.classList.add('fade-in');
     setLoading(true);
     resetProgress();
+
     setTimeout(() => {
       current = index % PAGES.length;
       const page = PAGES[current];
       const expectedUrl = page.url;
+
       updateUi(current);
+
       iframe.onload = null;
       iframe.onload = () => onFrameLoaded(expectedUrl, current);
-      loadTimeout = setTimeout(() => { setLoading(false); finishOverlay(); scheduleNext(); transitionLock = false; }, TEMPO_MAX_CARGA_MS);
+
+      loadTimeout = setTimeout(() => {
+        console.warn('Tempo máximo de carga atingido para:', expectedUrl);
+        setLoading(false);
+        finishOverlay();
+        scheduleNext();
+        preloadNext(current + 1);
+        transitionLock = false;
+      }, TEMPO_MAX_CARGA_MS);
+
       iframe.src = expectedUrl;
     }, 350);
   }
 
   document.addEventListener('click', showHud);
-  preloadFrame.onload = () => { try { const url = preloadFrame.src; if (url && url !== 'about:blank') loadedUrls.add(url); } catch(e) {} };
+
+  preloadFrame.onload = () => {
+    try {
+      const url = preloadFrame.src;
+      if (url && url !== 'about:blank') loadedUrls.add(url);
+    } catch (e) {}
+  };
+
   goTo(0);
   hudTimer = setTimeout(() => hud.classList.add('hidden'), 5000);
 </script>
