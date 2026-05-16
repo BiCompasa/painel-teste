@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel Jurídico</title>
+<title>Painel </title>
 <style>
   :root {
-    --bg: #15182F;
-    --bg-soft: #1b1f3d;
+    --bg: #f0f1f5;
+    --bg-soft: #f0f1f5;
     --panel: rgba(10, 12, 24, 0.58);
     --panel-strong: rgba(9, 11, 22, 0.82);
     --text: rgba(255,255,255,0.96);
@@ -303,8 +303,7 @@
 
 <script>
   const CTID = "d58f1e74-56ed-4318-8e84-2c3440cf361a";
-  const REL1 = "2dee392c-0ec2-474f-8921-df22058b942e";
-  const REL2 = "e2b667c1-92be-46a6-9b5f-e43d245816af";
+  const REL2 = "fc015669-e145-4dc2-86dd-0a30265f62c7";
 
   function embedUrl(reportId, pageName) {
     const base =
@@ -321,37 +320,23 @@
   }
 
   const PAGES = [
-    { nome: "Painel Gerencial – Média Mês Processos", url: embedUrl(REL2, "4d02b308d563344e00b0") },
-    { nome: "Painel Gerencial – Análise por Natureza Financeira", url: embedUrl(REL2, "e702b4c261accd5703e4") },
-    { nome: "Painel Gerencial – Valor Total Quitações - ATIVO", url: embedUrl(REL2, "1bf045701b11be2192cc") },
-    { nome: "Painel Gerencial – Valor Total Quitações - PASSIVO", url: embedUrl(REL2, "d85f082d77e7a6bc9e98") },
-    { nome: "Painel Gerencial – Valor Total Quitações Previstas", url: embedUrl(REL2, "ac9cfe93ed650e25bc29") },
-    { nome: "Painel Gerencial – Processos Em Atividade por Adverso", url: embedUrl(REL2, "2b8ff650cbb6786e5006") },
-    { nome: "Painel Gerencial – Processos Em Atividade por Advogado Adverso", url: embedUrl(REL2, "9cf75b4b0c20e0e9a6b0") },
-    { nome: "Painel Gerencial – Processos Em Atividade por Advogado", url: embedUrl(REL2, "faa2e676c464338c7d92") },
-    { nome: "Painel Gerencial – Processos Em Atividade por Juiz", url: embedUrl(REL2, "db388622871049aa71b0") },
-    { nome: "Painel Gerencial – Requisições Áreas para Jurídico", url: embedUrl(REL2, "8ef33c79b4b08e921223") },
-    { nome: "Painel Gerencial – Requisições Jurídico para Áreas", url: embedUrl(REL2, "4fc325bd8b077c8903d7") },
-    { nome: "Overview I - Estoque Processos", url: embedUrl(REL2, "719c33f014a00bac7bc5") },
-    { nome: "Overview I - Processos por Causa Raiz 1 - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "826e6e5790b940ce3600") },
-    { nome: "Overview I - Carteira Processos Geral  - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "3c9c0668ed744bdd8dc1") },
-    { nome: "Overview I - Carteira Processos Geral - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "657d24706d8dc3705088") },
-    { nome: "Overview II - Ranking Terceiros - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "5747498b30d29013e2d6") },
-    { nome: "Overview II - Ranking Obras - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "6a431636152ac9bdcd32") },
-    { nome: "Overview II - Processos por Fase - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "9801abe3e8e7181e0010") },
-    { nome: "Overview II - Garantias em Curso", url: embedUrl(REL2, "0bb82610e14833929de3") },
-    { nome: "Overview II - Carteira Processos Geral - ATIVOS + B.P. + ENCERRADOS", url: embedUrl(REL2, "b7ea0db39251000c7945") },
-    { nome: "Em Atividade I", url: embedUrl(REL2, "a60be43cb423d3dedd1e") },
-    { nome: "Em Atividade - Ranking por Adverso - Natureza Financeira Passiva", url: embedUrl(REL2, "8a83f1477b2607444e5e") },
-    { nome: "Em Atividade - Ranking por Adverso - Natureza Financeira Ativa", url: embedUrl(REL2, "6ac0c056d3132b029a5c") },
-    { nome: "Em Atividade - Por Matéria", url: embedUrl(REL2, "70a1eaed51e89c9d8ec6") },
-    { nome: "Em Atividade - Processos por Causa Raiz 1", url: embedUrl(REL2, "bbfff5718ecd9b3fd489") },
-    { nome: "Encerrados I", url: embedUrl(REL2, "b6e2130a9cd3f78637c4") },
-    { nome: "Encerrados - Motivo Encerramento", url: embedUrl(REL2, "3f3c952d9d304e831d63") },
-    { nome: "Encerrados - % Sucesso", url: embedUrl(REL2, "a5ade2c7a66332f6e2af") },
-    { nome: "Encerrados - Processos por Causa Raiz 1", url: embedUrl(REL2, "3c08c3d1bdaa218b81c8") },
-    { nome: "Decisões I", url: embedUrl(REL2, "e673da0e16f9e11a98ab") },
-    { nome: "Decisões II", url: embedUrl(REL2, "698d29066c4d0b4c96f2") }
+    { nome: "Prazos", url: embedUrl(REL2, "9cc9d8f9256a88a5077a") },
+    { nome: "Cronograma – Cons. TCV Inter II Xaxim", url: embedUrl(REL2, "17f34fad193ecb1ce9bd") },
+    { nome: "Cronograma – Recape MRG L2", url: embedUrl(REL2, "5cfc9cfae5551638edba") },
+    { nome: "Cronograma – CV Pinhais", url: embedUrl(REL2, "8a4c167c16079f73984a") },
+    { nome: "Cronograma – Janiopolis", url: embedUrl(REL2, "172e5adef52f37045bde") },
+    { nome: "Cronograma – Mambore", url: embedUrl(REL2, "3d40898d4e41a331235e") },
+    { nome: "Cronograma – Seara-Arvoredo", url: embedUrl(REL2, "5b05f382ef71a29b8b91") },
+    { nome: "Cronograma – PM Roncador", url: embedUrl(REL2, "c93aad968282fc52e8db") },
+    { nome: "Cronograma – Imbau", url: embedUrl(REL2, "671b635520864f00dbed") },
+    { nome: "Cronograma – Roncador", url: embedUrl(REL2, "628e3c6cdfcf52a0214f") },
+    { nome: "Cronograma – Ibaiti PR-436", url: embedUrl(REL2, "b499b4c01f8194f2af95") },
+    { nome: "Cronograma - Manoel Ribas", url: embedUrl(REL2, "a2d83ae463552988de2b") },
+    { nome: "Cronograma - Guaratuba", url: embedUrl(REL2, "118849a9f859ab9e2f76") },
+    { nome: "Cronograma - PROMAC Lote 01", url: embedUrl(REL2, "413b5ce11736d2881724") },
+    { nome: "Cronograma - PROMAC Lote 17", url: embedUrl(REL2, "f8be0ce5fc78f01781e7") },
+    { nome: "Cronograma - PROMAC Lote 14", url: embedUrl(REL2, "603cabc9674977a8a260") },
+    { nome: "Cronograma - PROMAC Lote 08", url: embedUrl(REL2, "f81c67f19f5a6042ee8c") }
   ];
 
   const TEMPO_EXIBICAO_MS = 90000;
